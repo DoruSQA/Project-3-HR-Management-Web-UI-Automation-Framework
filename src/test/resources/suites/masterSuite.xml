@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" thread-count="${threads}" parallel="classes">
+
+    <listeners>
+        <listener class-name="project.utils.CustomReport"/>
+    </listeners>
+
+    <test name="Test suite">
+
+        <groups>
+            <run>
+                <include name="${testGroup}"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="project.tests"/>
+        </packages>
+
+    </test>
+
+</suite>

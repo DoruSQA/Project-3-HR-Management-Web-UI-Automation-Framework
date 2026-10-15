@@ -1,0 +1,27 @@
+[
+  {
+	"testname":"loginWithValidCredentials",
+    "username":"Admin",
+    "password":"admin123"
+  },
+  {
+	"testname":"loginWithInvalidUsernameAndValidPassword",
+    "username":"wrong",
+    "password":"admin123"
+  },
+  {
+  	"testname":"loginWithInvalidPasswordAndValidUsername",
+      "username":"Admin",
+      "password":"wrong"
+    },
+  {
+	"testname":"loginWithEmptyUsernameAndValidPassword",
+    "username":"",
+    "password":"admin123"
+  },
+  {
+  	"testname":"loginWithEmptyPasswordAndValidUsername",
+      "username":"Admin",
+      "password":""
+    }
+]
