@@ -27,7 +27,8 @@ This project is built using **Java,** **Selenium WebDriver,** **TestNG,** **Mave
 The framework automates the following **modules:**
 - Authentication
 - Personnel Information Management (PIM)
-<br>Both positive and negative scenarios are automated, including validation and boundary testing.
+
+Both positive and negative scenarios are automated, including validation and boundary testing.
 
 Application under test: [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/web/index.php/auth/login) 
 
