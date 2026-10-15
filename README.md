@@ -30,7 +30,7 @@ The framework automates the following **modules:**
 - Authentication
 - Personnel Information Management (PIM)
 
-Both **positive** and **negative scenarios** are automated, including validation and boundary testing.
+Both **positive** and **negative scenarios** are automated, covering functional behavior, input constraints, and boundary conditions.
 
 Application under test: [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/web/index.php/auth/login) 
 
