@@ -5,92 +5,104 @@ import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import orangeHRM.test_metadata.TestCase;
 import project.base.BaseTest;
+import project.expected.EmployeeDeleteExpected;
 import project.testdata.TestDataFactory;
 
 public class EmployeeDeleteTests extends BaseTest {
 
+    @BeforeMethod(alwaysRun = true)
+    public void setUpEmployeeDelete() {
 
-	@BeforeMethod(alwaysRun = true)
-	public void setUpEmployeeDelete() {
-		
-		try {
-			validEmployee = TestDataFactory.createValidEmployeeUser();
-			validEmployee.setFirstname("JonnyDel").setLastname("CageDel").setEmployeeId("1Del");
-			loginPage.authentication(adminUser);
-			dashboard.openPersonnelInformationManagement();
-			employeeListPage.clickAddEmployeeButton();
-			addEmployeePage.fillEmployeeInformation(validEmployee);
-			addEmployeePage.clickSaveButton();
-			addEmployeePage.waitForConfirmationMsgToBeDisplayed();
-			personalDetailsPage.waitForPersonalDetailsHeadingToBeDisplayed();
+        try {
+            // Create a unique employee test record for the deletion scenarios
+            validEmployee = TestDataFactory.createValidEmployeeUser();
+            validEmployee.setFirstname("JonnyDel").setLastname("CageDel").setEmployeeId("1Del");
 
-		}
-		catch (Exception e)
-		{
-			throw new SkipException("BeforeMethod failed", e);
-		}
-	}
-	
+            // Log in as administrator and navigate to the employee creation form
+            loginPage.authentication(adminUser);
+            dashboard.openPersonnelInformationManagement();
+            employeeListPage.clickAddEmployeeButton();
 
-	@Test(groups = { "Regression", "PIM"}, description = "TC_PIM_DELETE_001")
-	public void deleteEmployeeUsingDeleteIcon() {
-		
-		// Test Steps
-		dashboard.openPersonnelInformationManagement();
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		employeeListPage.clickDeleteIcon().acceptConfirmationToDelete();
-		//createdEmployeeId=null;
-		
-		// Validation_1: On confirmation message
-		Assert.assertTrue(employeeListPage.isConfirmationMsgDisplayed(), "Confirmation message is not displayed");
-		
-		// Intermediary test steps (Search again)
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		
-		// Validation_2: Employee is no longer listed
-		Assert.assertTrue(employeeListPage.isNoRecordsFoundMsgDisplayed(), "No record message is not displayed");
-		Assert.assertEquals(employeeListPage.getSearchedRecordsResultHeading(), "No Records Found", "Table heading message doesn't match");
-		
-	}
+            // Create the employee required for the deletion tests
+            addEmployeePage.fillEmployeeInformation(validEmployee);
+            addEmployeePage.clickSaveButton();
 
-	@Test(groups = { "Regression", "PIM"}, description = "TC_PIM_DELETE_002")
-	public void deleteEmployeeUsingCheckBox() {
-		
-		// Test Steps
-		dashboard.openPersonnelInformationManagement();
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		employeeListPage.clickDeleteCheckBox().clickDeleteSelectedItemsBtn().acceptConfirmationToDelete();
+            // Verify the employee creation process has completed successfully
+            addEmployeePage.waitForConfirmationMsgToBeDisplayed();
+            personalDetailsPage.waitForPersonalDetailsHeadingToBeDisplayed();
 
-		// Validation_1: On confirmation message
-		Assert.assertTrue(employeeListPage.isConfirmationMsgDisplayed(), "Confirmation message is not displayed");
-		
-		// Intermediary test steps (Search again)
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		
-		// Validation_2: Employee is no longer listed
-		Assert.assertTrue(employeeListPage.isNoRecordsFoundMsgDisplayed(), "No record message is not displayed");
-		Assert.assertEquals(employeeListPage.getSearchedRecordsResultHeading(), "No Records Found", "Table heading message doesn't match");
-	}
-	
-	@Test(groups = { "Regression", "PIM"}, description = "TC_PIM_DELETE_003")
-	public void cancelEmployeeDeletionFromConfirmationDialogBox(){
-		
-		// Test Steps
-		dashboard.openPersonnelInformationManagement();
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		employeeListPage.clickDeleteIcon().clickCancelConfirmationBtn();
-		
-		// Validation_1: On confirmation message
-		Assert.assertFalse(employeeListPage.isConfirmationMsgDisplayed(), "Confirmation message should not be displayed");
-		
-		// Intermediary test steps (Search again)
-		employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
-		
-		// Validation_2: Employee is no longer listed
-		Assert.assertFalse(employeeListPage.isNoRecordsFoundMsgDisplayed(), "No record message should not be displayed");
-		Assert.assertNotEquals(employeeListPage.getSearchedRecordsResultHeading(), "No Records Found", "Table heading message doesn't match");
+        } catch (Exception e) {
+            throw new SkipException("BeforeMethod failed", e);
+        }
+    }
 
-	}
+    @Test(groups = { "Regression", "Smoke", "PIM" })
+    @TestCase(id = "TC_PIM_DELETE_001")
+    public void deleteEmployeeUsingDeleteIcon() {
 
+        // Navigate to the employee list and locate the employee by ID
+        dashboard.openPersonnelInformationManagement();
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Delete the employee using the row-level delete icon and confirm the action
+        employeeListPage.clickDeleteIcon().acceptConfirmationToDelete();
+
+        // Verify the employee deletion confirmation message is displayed
+        Assert.assertTrue(employeeListPage.isConfirmationMsgDisplayed());
+
+        // Search for the deleted employee to verify the removal from the list
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Verify the employee no longer appears in the search results
+        Assert.assertTrue(employeeListPage.isNoRecordsFoundMsgDisplayed());
+        Assert.assertEquals(employeeListPage.getSearchedRecordsResultHeading(),EmployeeDeleteExpected.NO_RECORD_FOUND_MSG );
+    }
+
+    @Test(groups = { "Regression", "PIM" })
+    @TestCase(id = "TC_PIM_DELETE_002")
+    public void deleteEmployeeUsingCheckBox() {
+
+        // Navigate to the employee list and locate the employee by ID
+        dashboard.openPersonnelInformationManagement();
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Select the employee using the checkbox and confirm the bulk deletion
+        employeeListPage.clickDeleteCheckBox()
+                .clickDeleteSelectedItemsBtn()
+                .acceptConfirmationToDelete();
+
+        // Verify the employee deletion confirmation message is displayed
+        Assert.assertTrue(employeeListPage.isConfirmationMsgDisplayed());
+
+        // Search for the deleted employee to verify the removal from the list
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Verify the employee no longer appears in the search results
+        Assert.assertTrue(employeeListPage.isNoRecordsFoundMsgDisplayed());
+        Assert.assertEquals(employeeListPage.getSearchedRecordsResultHeading(),EmployeeDeleteExpected.NO_RECORD_FOUND_MSG);
+    }
+
+    @Test(groups = { "Regression", "PIM" })
+    @TestCase(id = "TC_PIM_DELETE_003")
+    public void cancelEmployeeDeletionFromConfirmationDialogBox() {
+
+        // Navigate to the employee list and locate the employee by ID
+        dashboard.openPersonnelInformationManagement();
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Open the deletion confirmation dialog and cancel the operation
+        employeeListPage.clickDeleteIcon().clickCancelConfirmationBtn();
+
+        // Verify no deletion confirmation message is displayed
+        Assert.assertFalse(employeeListPage.isConfirmationMsgDisplayed());
+
+        // Search for the employee to verify the cancellation preserved the record
+        employeeListPage.searchByEmployeeId(validEmployee.getEmployeeId());
+
+        // Verify the employee remains in the search results
+        Assert.assertFalse(employeeListPage.isNoRecordsFoundMsgDisplayed());
+        Assert.assertNotEquals(employeeListPage.getSearchedRecordsResultHeading(),EmployeeDeleteExpected.NO_RECORD_FOUND_MSG);
+    }
 }

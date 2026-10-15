@@ -17,7 +17,7 @@ public class NewAccountPage extends BasePage {
 		super(d);
 	}
 
-	// Locators
+	// Page Locators
 	private By sideMenu = By.xpath("//div[@class='oxd-sidepanel-body']");
 	private By pageHeading = By.xpath("//h6");
 	private By logoutBox=By.xpath("//li[@class='--active oxd-userdropdown']");

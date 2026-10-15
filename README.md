@@ -28,7 +28,7 @@ The framework automates the following **modules:**
 - Authentication
 - Personnel Information Management (PIM)
 
-Both positive and negative scenarios are automated, including validation and boundary testing.
+Both **positive** and **negative scenarios** are automated, including validation and boundary testing.
 
 Application under test: [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/web/index.php/auth/login) 
 
@@ -87,18 +87,21 @@ maintainability, reusability, and separation of concerns.
 ### Run All Tests (Default - Smoke Suite)
 
 ```bash
-# All Tests (43 tests)
+# All Tests (34 tests)
 mvn clean test
 ```
 
 ### Run Specific Test Suite 
 
 ```bash
-# Smoke Tests (8 tests)
+# Smoke Tests (5 tests)
 mvn clean test -DtestSuite=Smoke
 
-# Test Module: PIM (Personnel Information Management) 
-mvn clean test -DtestSuite="PIM"
+# Test Module: PIM (29 tests) 
+mvn clean test -DtestSuite=PIM
+
+# Test Module: Authentication (5 tests)
+mvn clean test -DtestSuite=PIM
 ```
 ### Run Tests with different environments
 

@@ -10,21 +10,6 @@ public class DataReader {
 
 	private static final Gson gson = new Gson();
 
-//	public static <T> T read(String fileName, Class<T> clazz) {
-//
-//		String path = System.getProperty("user.dir") + "/src/test/java/testdata/jsonfiles/" + fileName + ".json";
-//
-//		String path2 = System.getProperty("user.dir") + "\\src\\test\\java\\testdata\\jsonfiles\\" + fileName + ".json";
-//
-//		try (FileReader reader = new FileReader(path2)) {
-//
-//			return gson.fromJson(reader, clazz);
-//
-//		} catch (Exception e) {
-//
-//			throw new RuntimeException("Cannot read json file: " + fileName, e);
-//		}
-//	}
 
 	public static <T> T read(String fileName, Class<T> clazz) {
 

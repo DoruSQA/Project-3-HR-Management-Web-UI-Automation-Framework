@@ -1,8 +1,8 @@
 package project.testdata;
 
-import project.testdata.modeldata.EmployeeUser;
-import project.testdata.modeldata.LoginUser;
-import project.testdata.modeldata.NewAccountUser;
+import project.testdata.model.EmployeeUser;
+import project.testdata.model.LoginUser;
+import project.testdata.model.NewAccountUser;
 import project.utils.DataReader;
 
 public class TestDataFactory {

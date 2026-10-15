@@ -18,7 +18,7 @@ public class DashboardPage extends BasePage {
 		super(d);
 	}
 
-	// Locators
+	// Page Locators
 	private By profilePicture = By.xpath("//header/descendant::img[@alt='profile picture']");
 	private By sideMenuPIM = By.xpath("//*[@class='oxd-main-menu']/descendant::*[text()='PIM']");
 

@@ -18,7 +18,7 @@ public class EmployeeListPage extends BasePage {
 		super(d);
 	}
 	
-	// Locators
+	// Page Locators
 	private By addEmplyeeBtn = By.xpath("//li/*[text()='Add Employee']");
 	private By employeeIdInput = By.xpath("//*[text()='Employee Id']/../following-sibling::div//input");
 	private By employeeNameInputBox = By.xpath("//*[text()='Employee Name']/../following-sibling::div//input");

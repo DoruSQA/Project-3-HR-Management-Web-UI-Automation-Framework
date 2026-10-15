@@ -1,4 +1,4 @@
-package project.testdata.modeldata;
+package project.testdata.model;
 
 public class NewAccountUser{
 

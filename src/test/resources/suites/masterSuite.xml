@@ -4,14 +4,14 @@
 <suite name="Suite" thread-count="${threads}" parallel="classes">
 
     <listeners>
-        <listener class-name="project.utils.CustomReport"/>
+        <listener class-name="project.utils.Report"/>
     </listeners>
 
     <test name="Test suite">
 
         <groups>
             <run>
-                <include name="${testGroup}"/>
+                <include name="${testSuite}"/>
             </run>
         </groups>
 

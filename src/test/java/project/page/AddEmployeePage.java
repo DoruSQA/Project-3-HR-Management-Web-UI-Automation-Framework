@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import project.base.BasePage;
-import project.testdata.modeldata.EmployeeUser;
-import project.testdata.modeldata.NewAccountUser;
+import project.testdata.model.EmployeeUser;
+import project.testdata.model.NewAccountUser;
 import project.utils.ElementWaits;
 
 public class AddEmployeePage extends BasePage {
@@ -20,7 +20,7 @@ public class AddEmployeePage extends BasePage {
 		super(d);
 	}
 	
-	// Locators
+	// Page Locators
 	private By saveButton = By.xpath("//button[@type='submit']");
 	private By toggleSwitch = By.xpath("//*[text()='Create Login Details']/following-sibling::div//span");
 	private By usernameInput = By.xpath("//*[text()='Username']/../following-sibling::*/input");

@@ -18,7 +18,7 @@ public class PersonalDetailsPage extends BasePage {
 		super(d);
 	}
 	
-	// Locators
+	// Page Locators
 	private By saveBtnFirstSection = By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//button[@type='submit']");
 	private By employeeListBtn = By.xpath("//*[text()='Employee List']");
 	private By employeeIdDubplicateErrorMsg = By.xpath("//*[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']");

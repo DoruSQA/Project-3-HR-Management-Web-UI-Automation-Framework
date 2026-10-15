@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import project.base.BasePage;
-import project.testdata.modeldata.LoginUser;
-import project.testdata.modeldata.NewAccountUser;
+import project.testdata.model.LoginUser;
+import project.testdata.model.NewAccountUser;
 import project.utils.ConfigEnvReader;
 import project.utils.ElementWaits;
 
@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
 		super(d);
 	}
 
-	// Static Locator
+	// Page Locators
 	private By passwordInput = By.xpath("//input[@name='password']");
 	private By usernameInput = By.xpath("//input[@name='username']");
 	private By loginButton = By.xpath("//button[contains(@class,'orangehrm-login-button')]");
@@ -30,7 +30,6 @@ public class LoginPage extends BasePage {
 	private By passwordRequiredMsg = By.xpath("//*[text()='Password']/../../descendant::*[text()='Required']");
 	private By csrfToken =By.xpath("//input[@type='hidden' and @name='_token']");
 
-	// Dynamic Locator
 	public By inputFieldLocator(String id) {
 		return By.xpath("//input[@id='" + id + "']");
 	}

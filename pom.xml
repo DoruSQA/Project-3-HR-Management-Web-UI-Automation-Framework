@@ -7,12 +7,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 
-	<!-- Maven variables and their default values -->
 	<properties>
 		<env>qa</env>
 		<suiteXmlFile>suites/masterSuite.xml</suiteXmlFile>
 		<threads>1</threads>
-		<testGroup>Smoke</testGroup>
+		<testSuite>Regression</testSuite>
 		<browserName>chrome</browserName>
 		<username>defaultUsername</username>
 		<password>defaultPassword</password>
@@ -64,9 +63,19 @@
 			<version>2.13.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>DoruSQA-Test-utilities</groupId>
+			<artifactId>DoruSQA-Test-utilities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/DoruSQA-Test-utilities-0.0.1-SNAPSHOT.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
-	<!-- ===================================================================================== -->
+	<!--
+	===================================================================================== -->
 	<build>
 
 		<testResources>
@@ -99,7 +108,7 @@
 						<env>${env}</env>
 						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 						<threads>${threads}</threads>
-						<testGroup>${testGroup}</testGroup>
+						<testSuite>${testSuite}</testSuite>
 					</systemPropertyVariables>
 
 
@@ -109,6 +118,7 @@
 
 		</plugins>
 	</build>
-	<!-- ===================================================================================== -->
+	<!--
+	===================================================================================== -->
 
 </project>
